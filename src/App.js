@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
-
+import React from "react";
+import Header from "./Header";
+import Main from "./Main";
 function App() {
   return (
-    <div className="App">
-      <h3>Welcome to ReactJS 18 Version</h3>
+    <div>
+      <Header></Header>
+      <Main></Main>
     </div>
   );
 }
