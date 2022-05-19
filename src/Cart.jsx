@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from './Product';
 
 function Cart(props) {
     const [cartproducts, setcartproducts] = React.useState([
@@ -48,17 +49,7 @@ function Cart(props) {
                 <tbody>
                     {
                         cartproducts.map((product,i)=>{
-                        return <tr>
-                            <td>{i}</td>
-                            <td>{product.name}</td>
-                            <td>{product.price}</td>
-                            <td>
-                            <button onClick={()=>{inc(i)}}>+</button>
-                            {product.count}
-                            <button onClick={()=>{dec(i)}}>-</button>
-
-                            </td>
-                        </tr>
+                            return <Product product={product} i={i} inc={inc} dec={dec}></Product>
                         })
                     }
                 </tbody>
