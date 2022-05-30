@@ -1,16 +1,19 @@
 import React from 'react';
 import Task from './Task'
 function Todolist(props) {
+    
     const [tasks, settasks] = React.useState(['rohit','car wash','dance fee']);
     const [newtask,setnewtask] = React.useState('')
     function addTask(){
         settasks([...tasks,newtask])
     }
-    function deleteTask(i){
-        var temp = [...tasks];
+    const deleteTask = React.useCallback((i)=>{
+        var temp = tasks;
         temp.splice(i,1);
         settasks([...temp])
-    }
+    },[tasks]);
+    
+    
     return (
         <div className="mybox">
             <h1>Todolist</h1>
