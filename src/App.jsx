@@ -4,10 +4,11 @@ import First from "./First";
 import React from "react";
 import UserContext from "./UserContext";
 import Abc from "./Abc";
+import userdetails from "./userdata.mock";
 function App() {
   const [myname,setmyname] = React.useState('praveen');
   return (
-    <UserContext.Provider value={myname}>
+    <UserContext.Provider value={userdetails}>
       <div className="App mybox reddish">
         <h3>Welcome to ReactJS 18 Version</h3>
         <h1>{myname}</h1>

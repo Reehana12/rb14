@@ -5,7 +5,7 @@ function Xyz(props) {
     return (
         <div className='mybox reddish'>
             <h3>Xyz Component</h3>
-            <h1>{user}</h1>
+            <h1>{user.firstname.toUpperCase()} {user.lastname.toUpperCase()}</h1>
         </div>
     );
 }
