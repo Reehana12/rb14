@@ -1,7 +1,7 @@
 const initialState = {
   count: 0,
 };
-function reducer(state = initialState, action) {
+function counterReducer(state = initialState, action) {
   if (action.type === "increment") {
     return { ...state, count: state.count + 1 };
   }
@@ -10,4 +10,4 @@ function reducer(state = initialState, action) {
   }
   return state;
 }
-export default reducer;
+export default counterReducer;
