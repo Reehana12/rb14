@@ -9,6 +9,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <h3>Welcome to ReactJS 18 Version</h3>
+        <h3>Redux with Actions</h3>
         <Todolist></Todolist>
         <Counter></Counter>
       </div>
