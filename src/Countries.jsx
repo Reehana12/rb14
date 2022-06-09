@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCountries } from './store/actions';
+import { selectCountries } from './store/countries.reducer';
 function Countries(props) {
     console.log("props in countries component",props)
     useEffect(()=>{
@@ -22,7 +23,8 @@ function Countries(props) {
     );
 }
 function mapStateToProps(state){
-    return state.countries
+    const countries = selectCountries(state)
+    return {countries:countries}
 }
 function mapDispatchToProps(dispatch){
     return {

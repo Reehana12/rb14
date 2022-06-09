@@ -7,4 +7,11 @@ function countriesReducer(state = initialState, action) {
   }
   return state;
 }
+export function selectCountries(state) {
+  if (state) {
+    return state.countries.countries;
+  } else {
+    return [];
+  }
+}
 export default countriesReducer;
