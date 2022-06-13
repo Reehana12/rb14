@@ -1,18 +1,8 @@
 import React from 'react';
-import {useFormik} from 'formik'
+import {useFormik} from 'formik';
+import * as Yup from 'yup' 
 function Signupform(props) {
-    function validate(values){
-        var errors = {}
-        //first name validation
-        if(values.firstname===null || values.firstname===''){
-            errors.firstname = "first name is required field"
-        }
-        //last name validation
-        if(values.lastname===null || values.lastname===''){
-            errors.lastname = "last name is required field"
-        }
-        return errors
-    }
+    
     const myform = useFormik({
         initialValues:{
             firstname:'',
@@ -20,7 +10,12 @@ function Signupform(props) {
             email:'',
             password:''
         },
-        validate:validate,
+        validationSchema:Yup.object({
+            firstname:Yup.string().max(15).required("first name is a mandatory field"),
+            lastname:Yup.string().max(15).required("last name please"),
+            email:Yup.string().email('given email is not valid').required("please give email"),
+            password:Yup.string().required("password is needed").matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,"given password not in the required format")
+        }),
         onSubmit:(values)=>{
             console.log("submit called",values)
         }
@@ -30,19 +25,21 @@ function Signupform(props) {
             <h1>Registation</h1>
             <form onSubmit={myform.handleSubmit}>
                 <label htmlFor="firstname">Firstname</label>
-                <input type="text" id="firstname" name="firstname" onChange={myform.handleChange} value={myform.values.firstname}/>
+                <input type="text" id="firstname" name="firstname" onBlur={myform.handleBlur} onChange={myform.handleChange} value={myform.values.firstname}/>
                 <br></br>
-                <h4>{myform.errors.firstname}</h4>
+                <h4>{myform.touched.firstname && myform.errors.firstname}</h4>
                 <label htmlFor="lastname">Lastname</label>
-                <input type="text" id="lastname" name="lastname" onChange={myform.handleChange} value={myform.values.lastname}/>
+                <input type="text" id="lastname" name="lastname"  onBlur={myform.handleBlur} onChange={myform.handleChange} value={myform.values.lastname}/>
                 <br></br>
-                <h4>{myform.errors.lastname}</h4>
+                <h4>{myform.touched.lastname && myform.errors.lastname}</h4>
                 <label htmlFor="email">Email</label>
-                <input type="text" id="email" name="email" onChange={myform.handleChange} value={myform.values.email}/>
+                <input type="text" id="email" name="email" onBlur={myform.handleBlur}  onChange={myform.handleChange} value={myform.values.email}/>
                 <br></br>
+                <h2>{myform.touched.email && myform.errors.email}</h2>
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" onChange={myform.handleChange} value={myform.values.password}/>
+                <input type="password" id="password" name="password" onBlur={myform.handleBlur}  onChange={myform.handleChange} value={myform.values.password}/>
                 <br></br>
+                <h2>{myform.touched.password && myform.errors.password}</h2>
                 <button type="submit">Submit</button>
             </form>
         </div>
