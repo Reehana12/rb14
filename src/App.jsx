@@ -1,19 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
 import store from "./store/store";
 import { Provider } from "react-redux";
-import Counter from "./Counter";
-import Todolist from "./Todolist";
-import Countries from "./Countries";
+import {Outlet,Link} from 'react-router-dom'
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <h3>Welcome to ReactJS 18 Version</h3>
-        <h3>Redux with Actions</h3>
-        <Countries></Countries>
-        <Todolist></Todolist>
-        <Counter></Counter>
+        <Link to="/">Home</Link>&nbsp;&nbsp;&nbsp;
+        <Link to="/todolist">TodoList</Link>&nbsp;&nbsp;&nbsp;
+        <Link to="/countries">Countries</Link>&nbsp;&nbsp;&nbsp;
+        <Link to="/counter">Counter</Link>&nbsp;&nbsp;&nbsp;
+        <Outlet></Outlet>
       </div>
     </Provider>
   );

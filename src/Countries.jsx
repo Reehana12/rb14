@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCountries } from './store/actions';
 import { selectCountries } from './store/countries.reducer';
+import { Link } from 'react-router-dom'
 function Countries(props) {
     console.log("props in countries component",props)
     useEffect(()=>{
@@ -13,7 +14,8 @@ function Countries(props) {
             {
                 props.countries.map((country)=>{
                     return <li style={{width:'150px',border:'1px solid',margin:'5px'}}>
-                        {country.name}
+                        <Link to={`/countryDetails/${country.alpha2Code}`}>{country.name}</Link>
+                        
                         <img src={country.flag} width="150px" height="100px" alt="" />
                         </li>
                 })
